@@ -4,6 +4,17 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+POST     /json                      controllers.Application.json()
+
+## Product API
+GET		/product/					controllers.ProductCtl.list()
+GET		/product/:id				controllers.ProductCtl.get(id: Integer)
+POST	/product/					controllers.ProductCtl.add()
+
+## Supply API
+GET		/supply/					controllers.SupplyCtl.list()
+GET		/supply/:id					controllers.SupplyCtl.get(id: Integer)
+POST	/supply/					controllers.SupplyCtl.add()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
