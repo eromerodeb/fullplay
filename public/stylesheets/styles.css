@@ -1,0 +1,67 @@
+.asterisk {
+    display: inline-block;
+    color: #dd0000;
+}
+
+body {
+    background: #F5F5F5;
+}
+
+body > div.container {
+    position: relative;
+    background: #ffffff;
+    padding-bottom: 1em;
+    border-radius: 0.4em;
+    border: 1px solid #dddddd;
+    -webkit-box-shadow: 0 2px 2px #dddddd;
+    -moz-box-shadow: 0 2px 2px #dddddd;
+    box-shadow: 0 2px 2px #dddddd;
+}
+
+div.container > table, form > table {
+    border: 1px solid #dddddd !important;
+}
+
+.loader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(177, 196, 204, 0.5);
+    text-align: center;
+}
+
+.loader > i {
+    top: 50%;
+    position: absolute;
+    margin-top: -0.5em;
+    margin-left: -0.5em;
+}
+
+div.modal.modal-wide > div.modal-dialog {
+    width: 80%;
+}
+
+div.clearfix {
+    margin-bottom: 1em;
+}
+
+div.container-header {
+    margin-top: 1em;
+    border-bottom: 1px solid #dddddd;
+    clear: both;
+}
+
+ol.breadcrumb:first-child a {
+    color: #00006a;
+}
+
+span.select2 {
+    width: 100%!important;
+}
+
+span.select2-selection__choice__remove {
+    margin: 0 0 0 3px!important;
+    float: right;
+}
