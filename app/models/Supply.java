@@ -49,6 +49,10 @@ public class Supply extends Model {
 	public void setStock(Double stock) {
 		this.stock = stock;
 	}
+
+	public static Supply find(Integer id) {
+		return FIND.byId(id);
+	}
 	
 	public static List<Supply> findAll() {
 		return FIND.all();

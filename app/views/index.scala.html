@@ -2,6 +2,21 @@
 
 @main("Welcome to Play") {
 
-    @play20.welcome(message, style = "Java")
+	<div data-ng-app="fullPlay">
+		<div data-ng-controller="mainCtl" data-ng-init="init()">
+			<h2>{{ title }}</h2>
+			<h3>Products</h3>
+			<ul>
+				<li data-ng-repeat="product in products" > {{ product.id }} ::: {{ product.name }} => {{ product.description }} </li>
+			</ul>
+			<h3>Supplies</h3>
+			<ul>
+				<li data-ng-repeat="supply in supplies" > {{ supply.id }} ::: {{ supply.name }} => {{ supply.stock }} </li>
+			</ul>
+		</div>
+	</div>
+	<div id="notices" class="notifications">
+
+	</div>
 
 }

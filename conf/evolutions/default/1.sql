@@ -10,6 +10,14 @@ create table product (
   constraint pk_product primary key (id))
 ;
 
+create table sale (
+  id                        integer not null,
+  buyer                     varchar(255),
+  product_id                integer,
+  amount                    integer,
+  constraint pk_sale primary key (id))
+;
+
 create table supply (
   id                        integer not null,
   name                      varchar(255),
@@ -25,8 +33,12 @@ create table product_supply (
 ;
 create sequence product_seq;
 
+create sequence sale_seq;
+
 create sequence supply_seq;
 
+alter table sale add constraint fk_sale_product_1 foreign key (product_id) references product (id) on delete restrict on update restrict;
+create index ix_sale_product_1 on sale (product_id);
 
 
 
@@ -42,11 +54,15 @@ drop table if exists product;
 
 drop table if exists product_supply;
 
+drop table if exists sale;
+
 drop table if exists supply;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists product_seq;
+
+drop sequence if exists sale_seq;
 
 drop sequence if exists supply_seq;
 

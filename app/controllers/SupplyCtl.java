@@ -17,10 +17,15 @@ public class SupplyCtl extends Controller {
 	}
 	
 	public static Result get(Integer id) {
-		return ok();
+		Supply supply = Supply.find(id);
+		if (supply == null) {
+			return notFound(Util.jsonResponse("Supply not Found", false));
+		}
+
+        JsonNode jsonObject = Json.toJson(supply);
+		return ok(Util.jsonResponse(jsonObject, true));
 	}
 	
-//	@BodyParser.Of(BodyParser.Json.class)
 	public static Result add() {
     	JsonNode json = request().body().asJson();
         if (json == null){
@@ -38,4 +43,39 @@ public class SupplyCtl extends Controller {
         JsonNode jsonObject = Json.toJson(supply);
         return created(Util.jsonResponse(jsonObject, true));
 	}
+
+	public static Result update(Integer id) {
+		JsonNode json = request().body().asJson();
+        if (json == null){
+            return badRequest(Util.jsonResponse("Expecting Json data", false));
+        }
+        
+        Supply supply;
+        try	{
+        	supply = (Supply) Json.fromJson(json, Supply.class);
+        	Supply.update(supply);
+        } catch (Exception e) {
+			return badRequest(Util.jsonResponse(e.getMessage(), false));
+		}
+        
+        JsonNode jsonObject = Json.toJson(supply);
+        return created(Util.jsonResponse(jsonObject, true));
+	}
+
+	public static Result delete(Integer id) {
+		Supply supply = Supply.find(id);
+        if (supply == null) {
+			return notFound(Util.jsonResponse("Product not Found", false));
+		}
+        
+        try	{
+        	Supply.delete(supply);
+        } catch (Exception e) {
+			return badRequest(Util.jsonResponse(e.getMessage(), false));
+		}
+        
+        JsonNode jsonObject = Json.toJson(supply);
+        return created(Util.jsonResponse(jsonObject, true));
+	}
+	
 }

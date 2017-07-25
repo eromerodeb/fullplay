@@ -7,14 +7,20 @@ GET     /                           controllers.Application.index()
 POST     /json                      controllers.Application.json()
 
 ## Product API
-GET		/product/					controllers.ProductCtl.list()
+GET		/product					controllers.ProductCtl.list()
 GET		/product/:id				controllers.ProductCtl.get(id: Integer)
-POST	/product/					controllers.ProductCtl.add()
+POST	/product/:id				controllers.ProductCtl.update(id: Integer)
+POST	/product					controllers.ProductCtl.add()
+DELETE	/product/:id				controllers.ProductCtl.delete(id: Integer)
 
 ## Supply API
-GET		/supply/					controllers.SupplyCtl.list()
+GET		/supply						controllers.SupplyCtl.list()
 GET		/supply/:id					controllers.SupplyCtl.get(id: Integer)
-POST	/supply/					controllers.SupplyCtl.add()
+POST	/supply/:id					controllers.SupplyCtl.update(id: Integer)
+POST	/supply						controllers.SupplyCtl.add()
+DELETE	/supply/:id					controllers.SupplyCtl.delete(id: Integer)
+
+## Sale API
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

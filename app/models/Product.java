@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -20,10 +21,10 @@ public class Product extends Model {
 
 	private String name;
 	
-	@MaxLength(500)
+	@MaxLength(10)
 	private String description;
 
-	@ManyToMany
+	@ManyToMany(cascade={CascadeType.ALL})
 	private List<Supply> supplies = new ArrayList<>();
 	
 	public Integer getID() {
@@ -58,6 +59,10 @@ public class Product extends Model {
 		this.supplies = supplies;
 	}
 
+	public static Product find(Integer id) {
+		return FIND.byId(id);
+	}
+	
 	public static List<Product> findAll() {
 		return FIND.all();
 	}
