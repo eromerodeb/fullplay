@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import models.Product;
 import models.Supply;
@@ -13,6 +14,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import utils.Util;
+import utils.Util.Message;
 
 public class ProductCtl extends Controller {
 	private static final Form<Product> productForm = Form.form(Product.class);
@@ -65,9 +67,9 @@ public class ProductCtl extends Controller {
 		}
         
         try	{
-        	Product product_r = (Product) Json.fromJson(json, Product.class);
+        	product = (Product) Json.fromJson(json, Product.class);
         	List<Supply> supplies = new ArrayList<Supply>();
-        	for (Iterator<Supply> iterator = product_r.getSupplies().iterator(); iterator.hasNext();) {
+        	for (Iterator<Supply> iterator = product.getSupplies().iterator(); iterator.hasNext();) {
 				Supply supply = (Supply) iterator.next();
 				supplies.add(Supply.find(supply.getID()));
 			}
@@ -93,8 +95,9 @@ public class ProductCtl extends Controller {
 			return badRequest(Util.jsonResponse(e.getMessage(), false));
 		}
         
-        JsonNode jsonObject = Json.toJson(product);
-        return created(Util.jsonResponse(jsonObject, true));
+        ObjectNode response = Util.jsonResponse("Product deleted.", true);
+        response.put("data", id);
+        return created(response);
 	}
 	
 }

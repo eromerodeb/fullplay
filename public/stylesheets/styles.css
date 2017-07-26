@@ -10,7 +10,9 @@ body {
 body > div.container {
     position: relative;
     background: #ffffff;
+    padding-top: 1em;
     padding-bottom: 1em;
+    margin: 1em auto;
     border-radius: 0.4em;
     border: 1px solid #dddddd;
     -webkit-box-shadow: 0 2px 2px #dddddd;
@@ -22,23 +24,6 @@ div.container > table, form > table {
     border: 1px solid #dddddd !important;
 }
 
-.loader {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(177, 196, 204, 0.5);
-    text-align: center;
-}
-
-.loader > i {
-    top: 50%;
-    position: absolute;
-    margin-top: -0.5em;
-    margin-left: -0.5em;
-}
-
 div.modal.modal-wide > div.modal-dialog {
     width: 80%;
 }
@@ -47,14 +32,15 @@ div.clearfix {
     margin-bottom: 1em;
 }
 
-div.container-header {
-    margin-top: 1em;
-    border-bottom: 1px solid #dddddd;
-    clear: both;
+.btn-add {
+	margin: 0.5em;
+	float: right;
 }
 
-ol.breadcrumb:first-child a {
-    color: #00006a;
+div.tab-pane {
+	border: 1px solid #dddddd;
+	border-top: none;
+    border-radius: 0 0 0.4em 0.4em;
 }
 
 span.select2 {

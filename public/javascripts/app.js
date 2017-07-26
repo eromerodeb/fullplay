@@ -17,30 +17,22 @@ var parser = function(data, header, status) {
 
 var app = angular.module('fullPlay', ['ngResource']);
 
-app.controller('mainCtl', ['$scope', '$resource', function($scope, $resource){
-	$scope.title = 'Sample';
-	$scope.products = [];
-	$scope.suplies = [];
-	
-	var $product = $resource('/product/:id', {id:'@id'}, {
-		get: { transformResponse : parser },
-		save: { method: 'POST', transformResponse : parser },
-		remove: { method: 'DELETE', transformResponse : parser }
-	});
-	var $supply = $resource('/supply/:id', {id:'@id'}, {
-		get: { transformResponse : parser },
-		save: { method: 'POST', transformResponse : parser },
-		remove: { method: 'DELETE', transformResponse : parser }
-	});
-	
-	$scope.init = () => {
-		$scope.products = $product.query();
-		$scope.supplies = $supply.query();
-	};
-	
+app.controller('mainCtl', ['$scope', function($scope){
+	$scope.tabs = ['product', 'supply', 'sale'];
+	$scope.titles = ['Products', 'Supplies', 'Sales'];
+	$scope.tab = 'product';
+	$scope.isActive = function(tab) {
+		return tab == $scope.tab ? "active" : "";
+	}
+	$scope.setActive = function(tab) {
+		$scope.tab = tab;
+	}
+	$scope.init = function() {
+//		return $scope.controller;
+	}
 //	$notices.msg({text:'Romero'});
 
-	$product.remove({"id": 41}); // Delete
+//	$product.remove({"id": 41}); // Delete
 //	$product.save({"id": 42, "supplies": [{"id":2},{"id":1}]}); // Update
 //	$product.save({"name": "Other", "description":"This is my description", "supplies": [1]}); // Create
 //	$supply.save({"name":"wood", "stock": 10});

@@ -1,18 +1,18 @@
 @(message: String)
 
-@main("Welcome to Play") {
-
-	<div data-ng-app="fullPlay">
-		<div data-ng-controller="mainCtl" data-ng-init="init()">
-			<h2>{{ title }}</h2>
-			<h3>Products</h3>
-			<ul>
-				<li data-ng-repeat="product in products" > {{ product.id }} ::: {{ product.name }} => {{ product.description }} </li>
+@main("Full Play") {
+	<div class="container" data-ng-app="fullPlay">
+		<div data-ng-controller="mainCtl">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" data-ng-repeat="(key, tab) in tabs" data-ng-class="isActive(tab)"><a href="#{{ titles[key] | lowercase }}" aria-controls="{{ titles[key] | lowercase }}" role="tab" data-ng-click="setActive(tab)">{{ titles[key] }}</a></li>
 			</ul>
-			<h3>Supplies</h3>
-			<ul>
-				<li data-ng-repeat="supply in supplies" > {{ supply.id }} ::: {{ supply.name }} => {{ supply.stock }} </li>
-			</ul>
+			
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" data-ng-init="init()">
+					<div data-ng-if="tab == 'product'" data-ng-include="'@routes.Assets.at("views/product/main.html")'"></div>
+					<div data-ng-if="tab == 'supply'" data-ng-include="'@routes.Assets.at("views/supply/list.html")'" ></div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div id="notices" class="notifications">
