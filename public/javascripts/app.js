@@ -25,7 +25,15 @@ var parser = function(data, header, status) {
 };
 
 var app = angular.module('fullPlay', ['ngResource']);
-
+app.filter('resume', function(){
+	return function(string) {
+		let resume = string;
+		if (string.length > 50) {
+			resume = string.slice(0,50) + "...";
+		}
+		return resume;
+	};
+});
 app.controller('mainCtl', ['$scope', function($scope){
 	$scope.tabs = ['product', 'supply', 'sale'];
 	$scope.titles = ['Products', 'Supplies', 'Sales'];
@@ -36,14 +44,4 @@ app.controller('mainCtl', ['$scope', function($scope){
 	$scope.setActive = function(tab) {
 		$scope.tab = tab;
 	}
-	$scope.init = function() {
-//		return $scope.controller;
-	}
-//	$notices.msg({text:'Romero'});
-
-//	$product.remove({"id": 41}); // Delete
-//	$product.save({"id": 42, "supplies": [{"id":2},{"id":1}]}); // Update
-//	$product.save({"name": "Other", "description":"This is my description", "supplies": [1]}); // Create
-//	$supply.save({"name":"wood", "stock": 10});
-//	$supply.save({"name":"iron", "stock": 12});
 }]);

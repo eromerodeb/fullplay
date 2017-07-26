@@ -1,0 +1,67 @@
+<div class="modal fade" id="supply_show" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Supply</h4>
+      </div>
+      <div class="modal-body">
+		<div class="form-group">
+		    <label for="name">Name</label>
+		    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="current.name" readonly="readonly"/>
+		</div>
+		<div class="form-group">
+		    <label for="stock">Stock</label>
+		    <input type="number" min="0" class="form-control" id="stock" placeholder="Stock" data-ng-model="current.stock" readonly="readonly"/>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="supply" tabindex="-1" role="dialog">
+  <form name="supply" data-ng-submit="save()">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Supply</h4>
+      </div>
+      <div class="modal-body">
+      	<input type="hidden" name="id" data-ng-model="current.id" />
+		<div class="form-group">
+		    <label for="name">Name</label>
+		    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="current.name" />
+		</div>
+		<div class="form-group">
+		    <label for="stock">Stock</label>
+		    <input type="number" min="0" class="form-control" id="stock" placeholder="Stock" data-ng-model="current.stock" />
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" >Save changes</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<div class="modal fade" id="supply_remove" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirm</h4>
+      </div>
+      <div class="modal-body">
+		<p>Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="remove(current.id)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

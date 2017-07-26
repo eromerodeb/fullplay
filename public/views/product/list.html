@@ -10,14 +10,17 @@
 		<tbody>
 			<tr data-ng-repeat="item in items">
 				<td>{{ item.name }}</td>
-				<td>{{ item.description | limitTo : 30 }}</td>
+				<td>{{ item.description | resume }}</td>
 				<td class="text-center">
 		 			<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-						<button type="button" class="btn btn-info"><i class="fa fa-eye"></i></button>
+						<button type="button" class="btn btn-info" data-ng-click="setCurrent(item)" data-toggle="modal" data-target="#product_show"><i class="fa fa-eye"></i></button>
 						<button type="button" class="btn btn-warning" data-ng-click="setUpdate(item)" data-toggle="modal" data-target="#product"><i class="fa fa-pencil"></i></button>
 						<button type="button" class="btn btn-danger"  data-ng-click="setCurrent(item)" data-toggle="modal" data-target="#product_remove"><i class="fa fa-trash"></i></button>
 					</div>
 				</td>
+			</tr>
+			<tr data-ng-show="items.length == 0">
+				<td colspan="3" class="text-center">No products found.</td>
 			</tr>
 		</tbody>
 	</table>

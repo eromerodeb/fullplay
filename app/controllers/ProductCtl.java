@@ -50,6 +50,12 @@ public class ProductCtl extends Controller {
         Ebean.beginTransaction();
         try	{
         	product = (Product) Json.fromJson(json, Product.class);
+        	List<Supply> supplies = new ArrayList<Supply>();
+        	for (Iterator<Supply> iterator = product.getSupplies().iterator(); iterator.hasNext();) {
+				Supply supply = (Supply) iterator.next();
+				supplies.add(Supply.find(supply.getID()));
+			}
+        	product.setSupplies(supplies);
         	Product.save(product);
         	Ebean.commitTransaction();
         } catch (Exception e) {

@@ -3,56 +3,5 @@
 		<button type="button" class="btn btn-success btn-sm btn-add" data-toggle="modal" data-target="#product" data-ng-click="add()">Add Product <i class="fa fa-plus"></i></button>
 	</div>
 	<div  data-ng-include="'/assets/views/product/list.html'"></div>
-
-	<div class="modal fade" id="product" tabindex="-1" role="dialog">
-	  <form name="supply" data-ng-submit="save()">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title">Product</h4>
-	      </div>
-	      <div class="modal-body">
-	      	<input type="hidden" name="id" data-ng-model="current.id" />
-			<div class="form-group">
-			    <label for="name">Name</label>
-			    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="current.name" />
-			</div>
-			<div class="form-group">
-			    <label for="description">Description</label>
-			    <textarea class="form-control" id="description" placeholder="Description" data-ng-model="current.description"></textarea>
-			</div>
-			<div class="form-group">
-			    <label for="supplies">Supplies</label>
-			    <select class="form-control" id="supplies" data-ng-model="current.supplies" multiple="multiple" data-ng-options="item as item.name for item in supplies track by item.id">
-			    </select>
-			</div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	  </form>
-	</div>
-
-	<div class="modal fade" id="product_remove" tabindex="-1" role="dialog">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title">Confirm</h4>
-	      </div>
-	      <div class="modal-body">
-			<p>Are you sure?</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-	        <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="remove(current.id)">Yes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
+	<div  data-ng-include="'/assets/views/product/modals.html'"></div>
 </div>

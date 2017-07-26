@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -27,6 +28,7 @@ public class Product extends Model {
 
 	@Required
 	@MaxLength(500)
+	@Column(columnDefinition="text")
 	private String description;
 
 	@Required

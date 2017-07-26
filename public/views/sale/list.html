@@ -15,9 +15,12 @@
 				<td>{{ item.amount }}</td>
 				<td class="text-center">
 		 			<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-						<button type="button" class="btn btn-info"><i class="fa fa-eye"></i></button>
+						<button type="button" class="btn btn-info" data-ng-click="setCurrent(item)" data-toggle="modal" data-target="#sale_show"><i class="fa fa-eye"></i></button>
 					</div>
 				</td>
+			</tr>
+			<tr data-ng-show="items.length == 0">
+				<td colspan="4" class="text-center">No sales found.</td>
 			</tr>
 		</tbody>
 	</table>

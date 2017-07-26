@@ -6,7 +6,7 @@
 create table product (
   id                        integer not null,
   name                      varchar(255),
-  description               varchar(255),
+  description               text,
   constraint pk_product primary key (id))
 ;
 
