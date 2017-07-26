@@ -50,9 +50,9 @@ public class Supply extends Model {
 	}
 
 	public void setStock(Double stock) throws Exception {
-		if (stock < 0) {
-			throw new Exception("Not remain supply: " + getName() );
-		}
+//		if (stock < 0) {
+//			throw new Exception("Not remain supply: " + getName() );
+//		}
 		this.stock = stock;
 	}
 
