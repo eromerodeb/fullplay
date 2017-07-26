@@ -1,37 +1,35 @@
 (function() {
-	app.service('productSrv',['$resource', function($resource){
-		var $product = $resource('/product/:id', {id:'@id'}, {
+	app.service('supplySrv',['$resource', function($resource){
+		var $supply = $resource('/supply/:id', {id:'@id'}, {
 			get: { transformResponse : parser },
 			save: { method: 'POST', transformResponse : parser },
 			remove: { method: 'DELETE', transformResponse : parser }
 		});
 		
 		this.query = function() {
-			return $product.query();
+			return $supply.query();
 		};
 
 		this.save = function(item, func) {
-			return $product.save(item, func);
+			return $supply.save(item, func);
 		};
 
 		this.remove = function(item, func) {
-			return $product.remove(item, func);
+			return $supply.remove(item, func);
 		};
 	}]);
-	app.controller('productCtl',['$scope', 'productSrv', 'supplySrv', function($scope, productSrv, supplySrv){
-		var $product = productSrv;
+	app.controller('supplyCtl',['$scope', 'supplySrv', function($scope, supplySrv){
 		var $supply = supplySrv;
 
-		$scope.title = 'Products';
+		$scope.title = 'Supplies';
 		$scope.items = [];
 		$scope.current = {};
-		$scope.supplies = [];
 		
 		$scope.modal = false;
 		$scope.view = 'list';
 		
 		$scope.init = function() {
-			$scope.items = $product.query();
+			$scope.items = $supply.query();
 		};
 
 		$scope.clear = function(){
@@ -40,20 +38,15 @@
 		
 		$scope.add = function(){
 			$scope.clear();
-			$scope.supplies = $supply.query();
+
 		}
-
-		$scope.setUpdate = function(current){
-			$scope.add();
-			$scope.current = angular.copy(current);
-		};
-
+		
 		$scope.setCurrent = function(current){
 			$scope.current = angular.copy(current);
 		};
 		
 		$scope.save = function(){
-			$product.save($scope.current, function(response){
+			$supply.save($scope.current, function(response){
 				if (!$scope.current.id) {
 					$scope.items.push(response);
 				} else {
@@ -70,7 +63,7 @@
 		};
 		
 		$scope.remove = function(id){
-			var index = -1;
+	        var index = -1;
         	$scope.items.findIndex(function(item, i){
 	        	if (item.id == id) {
 	        		index = i;
@@ -78,7 +71,7 @@
 	        	}
 	        	return false;
 	        });
-			$product.remove({"id":id}, function(response){
+			$supply.remove({"id":id}, function(response){
 				if (index > -1) {
 					$scope.items.splice(index, 1);
 				}
