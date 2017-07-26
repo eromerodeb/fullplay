@@ -5,27 +5,26 @@
 			save: { method: 'POST', transformResponse : parser }
 		});
 		
-		this.query = function() {
-			return $sale.query();
+		this.query = function(func) {
+			return $sale.query(func);
 		};
 
 		this.get = function(item, func) {
-			return $sale.get(item, func);
+			return $sale.save(item, func);
 		};
 		
 		this.save = function(item, func) {
 			return $sale.save(item, func);
 		};
 	}]);
-	app.controller('saleCtl',['$scope', 'saleSrv', function($scope, saleSrv){
+	app.controller('saleCtl',['$scope', 'saleSrv', 'productSrv', function($scope, saleSrv, productSrv){
 		var $sale = saleSrv;
+		var $product = productSrv;
 
 		$scope.title = 'Sales';
 		$scope.items = [];
 		$scope.current = {};
-		
-		$scope.modal = false;
-		$scope.view = 'list';
+		$scope.products = [];
 		
 		$scope.init = function() {
 			$scope.items = $sale.query();
@@ -37,6 +36,7 @@
 		
 		$scope.add = function(){
 			$scope.clear();
+			$scope.products = $product.query();
 		}
 		
 		$scope.setCurrent = function(current){

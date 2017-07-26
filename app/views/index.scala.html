@@ -3,6 +3,8 @@
 @main("Full Play") {
 	<div class="container" data-ng-app="fullPlay">
 		<div data-ng-controller="mainCtl">
+			<h2>Full Play</h2>
+			<h4>Frontend & Backend</h4>
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" data-ng-repeat="(key, tab) in tabs" data-ng-class="isActive(tab)"><a href="#{{ titles[key] | lowercase }}" aria-controls="{{ titles[key] | lowercase }}" role="tab" data-ng-click="setActive(tab)">{{ titles[key] }}</a></li>
 			</ul>
@@ -11,6 +13,7 @@
 				<div role="tabpanel" class="tab-pane active" data-ng-init="init()">
 					<div data-ng-if="tab == 'product'" data-ng-include="'@routes.Assets.at("views/product/main.html")'"></div>
 					<div data-ng-if="tab == 'supply'" data-ng-include="'@routes.Assets.at("views/supply/main.html")'" ></div>
+					<div data-ng-if="tab == 'sale'" data-ng-include="'@routes.Assets.at("views/sale/main.html")'" ></div>
 				</div>
 			</div>
 		</div>

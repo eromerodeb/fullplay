@@ -1,0 +1,24 @@
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="col-sm-4">Buyer</th>
+				<th class="col-sm-3">Product</th>
+				<th class="col-sm-3">Amount</th>
+				<th class="col-sm-2 text-center">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="item in items">
+				<td>{{ item.buyer }}</td>
+				<td>{{ item.product.name }}</td>
+				<td>{{ item.amount }}</td>
+				<td class="text-center">
+		 			<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+						<button type="button" class="btn btn-info"><i class="fa fa-eye"></i></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

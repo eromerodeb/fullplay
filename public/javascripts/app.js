@@ -10,6 +10,15 @@ var $notices = $('#notices').notify({
 var parser = function(data, header, status) {
 	var dataJson = angular.fromJson(data);
 	if (!!dataJson.message) {
+		var keys = Object.keys(dataJson.data || {});
+		console.log(keys);
+		if (keys.length) {
+			var errors = "<br/>";
+			keys.forEach(function(key){
+				errors += "<b>" + key + "</b>: " + dataJson.data[key].join(", ") + "<br/>";
+			});
+			dataJson.message.text += errors;
+		}
 		$notices.msg(dataJson.message);
 	}
 	return dataJson.data || {};

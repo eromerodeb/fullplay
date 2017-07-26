@@ -6,8 +6,8 @@
 			remove: { method: 'DELETE', transformResponse : parser }
 		});
 		
-		this.query = function() {
-			return $product.query();
+		this.query = function(func) {
+			return $product.query(func);
 		};
 
 		this.save = function(item, func) {
@@ -27,9 +27,6 @@
 		$scope.current = {};
 		$scope.supplies = [];
 		
-		$scope.modal = false;
-		$scope.view = 'list';
-		
 		$scope.init = function() {
 			$scope.items = $product.query();
 		};
@@ -44,8 +41,10 @@
 		}
 
 		$scope.setUpdate = function(current){
-			$scope.add();
-			$scope.current = angular.copy(current);
+			$scope.clear();
+			$scope.supplies = $supply.query(function(){
+				$scope.current = angular.copy(current);
+			});
 		};
 
 		$scope.setCurrent = function(current){

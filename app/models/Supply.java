@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import play.data.validation.Constraints.Min;
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
@@ -17,9 +18,11 @@ public class Supply extends Model {
 	@Id
 	private Integer ID;
 
+	@Required
 	private String name;
 	
 	@Min(0)
+	@Required
 	private Double stock;
 	
 	public Supply(Integer id) {
@@ -46,7 +49,10 @@ public class Supply extends Model {
 		return stock;
 	}
 
-	public void setStock(Double stock) {
+	public void setStock(Double stock) throws Exception {
+		if (stock < 0) {
+			throw new Exception("Not remain supply: " + getName() );
+		}
 		this.stock = stock;
 	}
 

@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import models.Product;
 import models.Supply;
+import play.Logger;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import utils.Util;
-import utils.Util.Message;
 
 public class ProductCtl extends Controller {
 	private static final Form<Product> productForm = Form.form(Product.class);
@@ -38,13 +39,23 @@ public class ProductCtl extends Controller {
         if (json == null){
             return badRequest(Util.jsonResponse("Expecting Json data", false));
         }
+		Form<Product> boundForm = productForm.bind(json);
+		if (boundForm.hasErrors()) {
+			ObjectNode response = Util.jsonResponse("Check this field(s):", false);
+	        response.put("data", boundForm.errorsAsJson());
+			return badRequest(response);
+		}
         
         Product product;
+        Ebean.beginTransaction();
         try	{
         	product = (Product) Json.fromJson(json, Product.class);
         	Product.save(product);
+        	Ebean.commitTransaction();
         } catch (Exception e) {
 			return badRequest(Util.jsonResponse(e.getMessage(), false));
+		} finally {
+			Ebean.endTransaction();
 		}
         
         JsonNode jsonObject = Json.toJson(product);
@@ -52,20 +63,24 @@ public class ProductCtl extends Controller {
 	}
 	
 	public static Result update(Integer id) {
-//		Form<Product> boundForm = productForm.bindFromRequest();
-//		Product product = boundForm.get();
-
 		JsonNode json = request().body().asJson();
         if (json == null){
             return badRequest(Util.jsonResponse("Expecting Json data", false));
         }
-        
+        Form<Product> boundForm = productForm.bind(json);
+		if (boundForm.hasErrors()) {
+			ObjectNode response = Util.jsonResponse("Check this field(s):", false);
+	        response.put("data", boundForm.errorsAsJson());
+			return badRequest(response);
+		}
+		
         Product product;
         product = Product.find(id);
         if (product == null) {
 			return notFound(Util.jsonResponse("Product not Found", false));
 		}
         
+        Ebean.beginTransaction();
         try	{
         	product = (Product) Json.fromJson(json, Product.class);
         	List<Supply> supplies = new ArrayList<Supply>();
@@ -75,8 +90,11 @@ public class ProductCtl extends Controller {
 			}
         	product.setSupplies(supplies);
         	Product.update(product);
+        	Ebean.commitTransaction();
         } catch (Exception e) {
 			return badRequest(Util.jsonResponse(e.getMessage(), false));
+		} finally {
+			Ebean.endTransaction();
 		}
         
         JsonNode jsonObject = Json.toJson(product);
@@ -89,10 +107,14 @@ public class ProductCtl extends Controller {
 			return notFound(Util.jsonResponse("Product not Found", false));
 		}
         
+        Ebean.beginTransaction();
         try	{
         	Product.delete(product);
+        	Ebean.commitTransaction();
         } catch (Exception e) {
 			return badRequest(Util.jsonResponse(e.getMessage(), false));
+		} finally {
+			Ebean.endTransaction();
 		}
         
         ObjectNode response = Util.jsonResponse("Product deleted.", true);

@@ -3,12 +3,15 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import play.data.format.Formats.NonEmpty;
 import play.data.validation.Constraints.MaxLength;
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
 @Entity
@@ -19,11 +22,14 @@ public class Product extends Model {
 	@Id
 	private Integer ID;
 
+	@Required
 	private String name;
-	
-	@MaxLength(10)
+
+	@Required
+	@MaxLength(500)
 	private String description;
 
+	@Required
 	@ManyToMany(cascade={CascadeType.ALL})
 	private List<Supply> supplies = new ArrayList<>();
 	
