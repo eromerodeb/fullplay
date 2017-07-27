@@ -1,5 +1,3 @@
-@(loginForm: Form[LoginSecurity.Login])
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,11 +52,9 @@
 		<div class="container">
 	      <form class="form-signin" method="post" action="@routes.LoginSecurity.authenticate">
 	      	<h2 class="form-signin-heading">Please sign in</h2>
-	        <input type="text" class="form-control" name="email" placeholder="Email address" autofocus value="@loginForm("email").value">
+	        <input type="text" class="form-control" name="username" placeholder="Username" autofocus>
 	        <input type="password" class="form-control" name="password" placeholder="Password">
-			@for(error <- loginForm.errors()) {
-				<div class="alert alert-danger">@error</div>
-	        }
+			
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in <i class="fa fa-sign-in"></i></button>
 	      </form>
 	    </div>

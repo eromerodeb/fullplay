@@ -10,12 +10,12 @@ import views.html.*;
 public class LoginSecurity extends Controller {
 
 	public static class Login {
-		public String email;
+		public String username;
 		public String password;
 	}
 	
 	public static Result login() {
-		return ok(login.render(Form.form(Login.class)));
+		return ok(login.render());
 	}
 	
 	public static Result authenticate(){
@@ -26,14 +26,13 @@ public class LoginSecurity extends Controller {
 			return redirect(routes.LoginSecurity.login());
 		}
 		
-		User user = User.autenthicate(login.email, login.password);
+		User user = User.autenthicate(login.username, login.password);
 		if (user == null) {
-			form.error("Invalid Credentials.");
-//			return forbidden("Invalid Credentials.");
+
 			return redirect(routes.LoginSecurity.login());
 		}
 		session().clear();
-		session("email", login.email);
+		session("username", login.username);
 		
 		return redirect(routes.Application.index());	
 	}
