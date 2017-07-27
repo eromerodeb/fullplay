@@ -24,7 +24,9 @@
 4.   Entre los test que se le pudieran a hacer a esta aplicacion web se encuentran tanto las pruebas de caja blanca como las pruebas de caja negra,
  pruebas unitarias, pruebas de disponibilidad y estres para medir el comportamiento del sistema antes grandes cargas de peticiones (en este 
  caso no creo que obtenga buenos resultados en las de estres :D :D) ,.
-5.   Autenticacion
+5.   Respecto a este punto un ejemplo basico literalmente seria lo implementado en el **branch** `security` (user:admin, pass:admin), ya de querer 
+ algo mas robusto se tendria que adicionar a los usuarios roles, y en base a los roles garantizar los permisos a los recursos, entidades o datos 
+ del sistema. 
 6.   Para la correcta distribucion de los assets se puede hacer uso de ***bower*** y homologos de este mismo tipo de distribuicion de assets 
  existentes en la actualidad.
 
