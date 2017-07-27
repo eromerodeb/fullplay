@@ -15,7 +15,8 @@ public class LoginSecurity extends Controller {
 	}
 	
 	public static Result login() {
-		return ok(login.render());
+		String error = flash().get("error");
+		return ok(login.render(error));
 	}
 	
 	public static Result authenticate(){
@@ -23,12 +24,13 @@ public class LoginSecurity extends Controller {
 		Login login = form.get();
 		
 		if (form.hasErrors()) {
+			flash().put("error", "Invalid Credentials");
 			return redirect(routes.LoginSecurity.login());
 		}
 		
 		User user = User.autenthicate(login.username, login.password);
 		if (user == null) {
-
+			flash().put("error", "Invalid Credentials");
 			return redirect(routes.LoginSecurity.login());
 		}
 		session().clear();
