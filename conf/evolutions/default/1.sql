@@ -25,6 +25,14 @@ create table supply (
   constraint pk_supply primary key (id))
 ;
 
+create table user (
+  id                        integer not null,
+  username                  varchar(255),
+  password                  varchar(255),
+  constraint uq_user_username unique (username),
+  constraint pk_user primary key (id))
+;
+
 
 create table product_supply (
   product_id                     integer not null,
@@ -36,6 +44,8 @@ create sequence product_seq;
 create sequence sale_seq;
 
 create sequence supply_seq;
+
+create sequence user_seq;
 
 alter table sale add constraint fk_sale_product_1 foreign key (product_id) references product (id) on delete restrict on update restrict;
 create index ix_sale_product_1 on sale (product_id);
@@ -58,6 +68,8 @@ drop table if exists sale;
 
 drop table if exists supply;
 
+drop table if exists user;
+
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists product_seq;
@@ -65,4 +77,6 @@ drop sequence if exists product_seq;
 drop sequence if exists sale_seq;
 
 drop sequence if exists supply_seq;
+
+drop sequence if exists user_seq;
 

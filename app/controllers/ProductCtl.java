@@ -15,8 +15,10 @@ import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import utils.Util;
 
+@Security.Authenticated(Secured.class)
 public class ProductCtl extends Controller {
 	private static final Form<Product> productForm = Form.form(Product.class);
 

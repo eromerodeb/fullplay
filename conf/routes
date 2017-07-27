@@ -2,7 +2,11 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+# Statics pages
+GET     /login                      controllers.LoginSecurity.login()
+POST    /authenticate               controllers.LoginSecurity.authenticate()
+GET     /logout                    	controllers.LoginSecurity.logout()
+
 GET     /                           controllers.Application.index()
 
 ## Product API

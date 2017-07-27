@@ -9,8 +9,10 @@ import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import utils.Util;
 
+@Security.Authenticated(Secured.class)
 public class SupplyCtl extends Controller {
 	private static final Form<Supply> supplyForm = Form.form(Supply.class);
 
