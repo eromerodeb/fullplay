@@ -3,12 +3,9 @@ package models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
-import play.data.validation.Constraints.Email;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
 
 @Entity
 public class User extends Model {
@@ -18,7 +15,6 @@ public class User extends Model {
 	@Id
 	private Integer ID;
 
-	@Email
 	@Required
 	@Column(unique=true)
 	private String username;
