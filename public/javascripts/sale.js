@@ -28,6 +28,7 @@
 		
 		$scope.init = function() {
 			$scope.items = $sale.query();
+			$scope.products = $product.query();
 		};
 
 		$scope.clear = function(){
